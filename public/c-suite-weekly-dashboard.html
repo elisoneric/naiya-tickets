@@ -1,0 +1,1772 @@
+<!-- Standalone Executive Dashboard Copy in naiya.v3/public -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C-Suite Weekly Operations Dashboard | Na'iya Technology Limited</title>
+  <meta name="description" content="Executive Performance & Operations Report for the CEO of Na'iya Technology Limited. Period: Sun, Oct 4 – Sat, Oct 10, 2026.">
+  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ==========================================================================
+       EXECUTIVE C-SUITE DESIGN SYSTEM
+       Theme: Minimalist Slate / Navy (#0F172A), Crisp White, Indigo & Emerald Accents
+       Strict Typography Scale, Tabular Numbers, Print & PDF Optimized
+       ========================================================================== */
+    :root {
+      --bg-page: #F8FAFC;
+      --bg-surface: #FFFFFF;
+      --bg-surface-subtle: #F1F5F9;
+      --bg-card-hover: #F8FAFC;
+      
+      --text-primary: #0F172A;
+      --text-secondary: #475569;
+      --text-muted: #64748B;
+      --text-subtle: #94A3B8;
+      
+      --border-light: #E2E8F0;
+      --border-medium: #CBD5E1;
+      --border-dark: #94A3B8;
+      
+      --brand-navy: #0F172A;
+      --brand-indigo: #4F46E5;
+      --brand-indigo-light: #EEF2FF;
+      --brand-emerald: #10B981;
+      --brand-emerald-dark: #059669;
+      --brand-emerald-light: #ECFDF5;
+      --brand-amber: #D97706;
+      --brand-amber-light: #FFFBEB;
+      --brand-blue: #0284C7;
+      --brand-blue-light: #F0F9FF;
+      --brand-purple: #7C3AED;
+      --brand-purple-light: #F5F3FF;
+      
+      --shadow-sm: 0 1px 2px 0 rgba(15, 23, 42, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.07), 0 2px 4px -2px rgba(15, 23, 42, 0.05);
+      --shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -4px rgba(15, 23, 42, 0.04);
+      --shadow-card: 0 1px 3px 0 rgba(15, 23, 42, 0.06), 0 1px 2px -1px rgba(15, 23, 42, 0.06);
+
+      --radius-sm: 6px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --radius-full: 9999px;
+      
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    body.dark-mode {
+      --bg-page: #0B0F19;
+      --bg-surface: #111827;
+      --bg-surface-subtle: #1F2937;
+      --bg-card-hover: #162032;
+      
+      --text-primary: #F8FAFC;
+      --text-secondary: #CBD5E1;
+      --text-muted: #94A3B8;
+      --text-subtle: #64748B;
+      
+      --border-light: #1E293B;
+      --border-medium: #334155;
+      --border-dark: #475569;
+      
+      --brand-navy: #1E293B;
+      --brand-indigo: #6366F1;
+      --brand-indigo-light: rgba(99, 102, 241, 0.15);
+      --brand-emerald: #10B981;
+      --brand-emerald-dark: #34D399;
+      --brand-emerald-light: rgba(16, 185, 129, 0.15);
+      --brand-amber: #F59E0B;
+      --brand-amber-light: rgba(245, 158, 11, 0.15);
+      --brand-blue: #38BDF8;
+      --brand-blue-light: rgba(56, 189, 248, 0.15);
+      --brand-purple: #A78BFA;
+      --brand-purple-light: rgba(167, 139, 250, 0.15);
+      
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+      --shadow-card: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 14px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+      font-feature-settings: "cv02", "cv03", "cv04", "cv11", "tnum";
+    }
+
+    body {
+      background-color: var(--bg-page);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      line-height: 1.45;
+      padding: 24px 20px;
+      transition: background-color 0.2s ease, color 0.2s ease;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .tnum {
+      font-variant-numeric: tabular-nums;
+      font-feature-settings: "tnum";
+    }
+
+    .dashboard-wrapper {
+      width: 100%;
+      max-width: 1360px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .action-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-light);
+      padding: 8px 16px;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 4px;
+    }
+
+    .toolbar-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    .toolbar-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 3px 8px;
+      border-radius: var(--radius-sm);
+      background: var(--bg-surface-subtle);
+      color: var(--text-primary);
+      border: 1px solid var(--border-light);
+    }
+
+    .toolbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-executive {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      border: 1px solid var(--border-medium);
+      background: var(--bg-surface);
+      color: var(--text-primary);
+      transition: all 0.15s ease;
+      font-family: var(--font-sans);
+    }
+
+    .btn-executive:hover {
+      background: var(--bg-surface-subtle);
+      border-color: var(--border-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn-executive.primary {
+      background: var(--brand-navy);
+      color: #FFFFFF;
+      border-color: var(--brand-navy);
+    }
+
+    body.dark-mode .btn-executive.primary {
+      background: var(--brand-indigo);
+      border-color: var(--brand-indigo);
+      color: #FFFFFF;
+    }
+
+    .header-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 16px 24px;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #0F172A 0%, #4F46E5 50%, #10B981 100%);
+    }
+
+    .company-branding {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand-logo-crest {
+      width: 44px;
+      height: 44px;
+      background: #0F172A;
+      color: #FFFFFF;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 20px;
+      letter-spacing: -0.04em;
+      flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    body.dark-mode .brand-logo-crest {
+      background: #1E293B;
+      border-color: rgba(99, 102, 241, 0.3);
+      color: #38BDF8;
+    }
+
+    .brand-titles {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-name-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .company-title {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+    }
+
+    .report-divider {
+      color: var(--border-medium);
+      font-weight: 300;
+    }
+
+    .report-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .report-sub-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 3px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .confidential-tag {
+      font-weight: 700;
+      color: var(--brand-indigo);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .metadata-cluster {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+      text-align: right;
+    }
+
+    .badge-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .system-health-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      background: var(--brand-emerald-light);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: var(--brand-emerald-dark);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .pulse-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--brand-emerald);
+      box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+      animation: pulse-green 2s infinite cubic-bezier(0.66, 0, 1, 1);
+    }
+
+    @keyframes pulse-green {
+      0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+      70% { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    }
+
+    .period-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 10px;
+      background: var(--bg-surface-subtle);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .period-meta {
+      font-size: 11px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .kpi-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 16px 18px;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .kpi-card:hover {
+      box-shadow: var(--shadow-md);
+      border-color: var(--border-medium);
+    }
+
+    .kpi-card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .kpi-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .kpi-tag {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: var(--radius-full);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .kpi-tag.blue { background: var(--brand-blue-light); color: var(--brand-blue); border: 1px solid rgba(2, 132, 199, 0.2); }
+    .kpi-tag.emerald { background: var(--brand-emerald-light); color: var(--brand-emerald-dark); border: 1px solid rgba(16, 185, 129, 0.2); }
+    .kpi-tag.indigo { background: var(--brand-indigo-light); color: var(--brand-indigo); border: 1px solid rgba(79, 70, 229, 0.2); }
+    .kpi-tag.purple { background: var(--brand-purple-light); color: var(--brand-purple); border: 1px solid rgba(124, 58, 237, 0.2); }
+
+    .kpi-main-stat {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .kpi-number {
+      font-size: 28px;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: var(--text-primary);
+    }
+
+    .kpi-unit {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .kpi-secondary {
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.4;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .kpi-highlight {
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .kpi-bar-container {
+      width: 100%;
+      height: 6px;
+      background: var(--bg-surface-subtle);
+      border-radius: var(--radius-full);
+      margin-top: 10px;
+      overflow: hidden;
+      display: flex;
+    }
+
+    .kpi-bar-segment {
+      height: 100%;
+    }
+
+    .kpi-foot-note {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .section-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 16px 20px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .section-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .section-heading-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-badge-num {
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      background: var(--brand-navy);
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    body.dark-mode .section-badge-num {
+      background: var(--brand-indigo);
+    }
+
+    .section-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--text-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .section-subtext {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .roi-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      background: var(--bg-surface-subtle);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 10px 16px;
+      margin-bottom: 12px;
+    }
+
+    .roi-strip-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .roi-strip-label {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .roi-strip-value {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    .roi-strip-sub {
+      font-size: 11px;
+      color: var(--text-secondary);
+    }
+
+    .executive-table-container {
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    .executive-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      text-align: left;
+    }
+
+    .executive-table th {
+      background: var(--bg-surface-subtle);
+      color: var(--text-secondary);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 8px 12px;
+      border-top: 1px solid var(--border-light);
+      border-bottom: 1px solid var(--border-medium);
+      white-space: nowrap;
+    }
+
+    .executive-table td {
+      padding: 9px 12px;
+      border-bottom: 1px solid var(--border-light);
+      color: var(--text-primary);
+      vertical-align: middle;
+    }
+
+    .executive-table tr:hover td {
+      background: var(--bg-card-hover);
+    }
+
+    .executive-table tr.highlight-top {
+      background: rgba(79, 70, 229, 0.03);
+    }
+
+    body.dark-mode .executive-table tr.highlight-top {
+      background: rgba(99, 102, 241, 0.08);
+    }
+
+    .executive-table tr.highlight-perfect {
+      background: rgba(16, 185, 129, 0.03);
+    }
+
+    body.dark-mode .executive-table tr.highlight-perfect {
+      background: rgba(16, 185, 129, 0.08);
+    }
+
+    .table-tool-name {
+      font-weight: 700;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tool-chip {
+      font-size: 9px;
+      font-weight: 700;
+      padding: 2px 5px;
+      border-radius: var(--radius-sm);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .tool-chip.indigo { background: var(--brand-indigo-light); color: var(--brand-indigo); }
+    .tool-chip.emerald { background: var(--brand-emerald-light); color: var(--brand-emerald-dark); }
+    .tool-chip.cyan { background: var(--brand-blue-light); color: var(--brand-blue); }
+    .tool-chip.slate { background: var(--bg-surface-subtle); color: var(--text-secondary); }
+
+    .pill-stat {
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: var(--radius-full);
+      font-size: 11px;
+      display: inline-block;
+    }
+
+    .pill-stat.emerald {
+      background: var(--brand-emerald-light);
+      color: var(--brand-emerald-dark);
+      border: 1px solid rgba(16, 185, 129, 0.2);
+    }
+
+    .pill-stat.indigo {
+      background: var(--brand-indigo-light);
+      color: var(--brand-indigo);
+      border: 1px solid rgba(79, 70, 229, 0.2);
+    }
+
+    .executive-table tr.table-total-row {
+      background: var(--bg-surface-subtle);
+      font-weight: 800;
+    }
+
+    .executive-table tr.table-total-row td {
+      border-top: 2px solid var(--border-medium);
+      border-bottom: 2px solid var(--border-medium);
+      font-size: 12px;
+      color: var(--text-primary);
+    }
+
+    .two-col-grid {
+      display: grid;
+      grid-template-columns: 46% 54%;
+      gap: 14px;
+    }
+
+    @media (max-width: 1024px) {
+      .two-col-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .category-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .category-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .cat-meta-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+    }
+
+    .cat-name {
+      font-weight: 700;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .cat-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 2px;
+      display: inline-block;
+    }
+
+    .cat-stats {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 11px;
+    }
+
+    .cat-count {
+      color: var(--text-secondary);
+    }
+
+    .cat-pct {
+      font-weight: 800;
+      color: var(--text-primary);
+      min-width: 44px;
+      text-align: right;
+    }
+
+    .progress-bar-bg {
+      width: 100%;
+      height: 7px;
+      background: var(--bg-surface-subtle);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+      border: 1px solid var(--border-light);
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      border-radius: var(--radius-full);
+      transition: width 0.3s ease;
+    }
+
+    .staff-name-cell {
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .staff-sub-role {
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 7px;
+      border-radius: var(--radius-full);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      white-space: nowrap;
+    }
+
+    .status-pill.green {
+      background: var(--brand-emerald-light);
+      color: var(--brand-emerald-dark);
+      border: 1px solid rgba(16, 185, 129, 0.2);
+    }
+
+    .takeaways-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .takeaway-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      position: relative;
+    }
+
+    .takeaway-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .takeaway-title {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--text-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .strategic-tag {
+      font-size: 9px;
+      font-weight: 800;
+      padding: 2px 6px;
+      border-radius: var(--radius-sm);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .strategic-tag.on-track {
+      background: var(--brand-emerald-light);
+      color: var(--brand-emerald-dark);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .strategic-tag.exceeded {
+      background: var(--brand-indigo-light);
+      color: var(--brand-indigo);
+      border: 1px solid rgba(79, 70, 229, 0.3);
+    }
+
+    .strategic-tag.optimal {
+      background: var(--brand-emerald-light);
+      color: var(--brand-emerald-dark);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .strategic-tag.expanding {
+      background: var(--brand-blue-light);
+      color: var(--brand-blue);
+      border: 1px solid rgba(2, 132, 199, 0.3);
+    }
+
+    .takeaway-body {
+      font-size: 11.5px;
+      color: var(--text-secondary);
+      line-height: 1.45;
+    }
+
+    .takeaway-meta {
+      font-size: 10px;
+      color: var(--text-muted);
+      margin-top: auto;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .dashboard-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 14px;
+      font-size: 11px;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border-light);
+      margin-top: 4px;
+    }
+
+    .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .footer-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+    }
+
+    #execToast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #0F172A;
+      color: #FFFFFF;
+      padding: 10px 16px;
+      border-radius: var(--radius-md);
+      font-size: 12px;
+      font-weight: 600;
+      box-shadow: var(--shadow-lg);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    #execToast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    @page {
+      size: A4 landscape;
+      margin: 8mm 10mm 8mm 10mm;
+    }
+
+    @media print {
+      body {
+        background: #FFFFFF !important;
+        color: #0F172A !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+
+      .dashboard-wrapper {
+        max-width: 100% !important;
+        width: 100% !important;
+        gap: 10px !important;
+      }
+
+      .action-toolbar, #execToast {
+        display: none !important;
+      }
+
+      .header-card, .kpi-card, .section-card, .takeaway-card {
+        box-shadow: none !important;
+        border: 1px solid #CBD5E1 !important;
+        background: #FFFFFF !important;
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+
+      .header-card {
+        padding: 10px 16px !important;
+      }
+
+      .header-card::before {
+        height: 2px !important;
+      }
+
+      .kpi-card {
+        padding: 10px 12px !important;
+      }
+
+      .kpi-number {
+        font-size: 24px !important;
+      }
+
+      .roi-strip {
+        background: #F8FAFC !important;
+        padding: 6px 12px !important;
+        margin-bottom: 8px !important;
+      }
+
+      .executive-table th, .executive-table td {
+        padding: 6px 8px !important;
+        font-size: 10.5px !important;
+      }
+
+      .takeaways-grid {
+        gap: 8px !important;
+      }
+
+      .takeaway-card {
+        padding: 8px 10px !important;
+      }
+
+      .takeaway-body {
+        font-size: 10.5px !important;
+        line-height: 1.35 !important;
+      }
+
+      .dashboard-footer {
+        padding: 4px 6px !important;
+        font-size: 9.5px !important;
+      }
+
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="dashboard-wrapper">
+
+    <!-- Executive Action Bar -->
+    <header class="action-toolbar" id="screenToolbar">
+      <div class="toolbar-left">
+        <span class="toolbar-chip">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Executive Briefing
+        </span>
+        <span style="font-weight: 600; color: var(--text-primary);">C-Suite Operations Dashboard</span>
+        <span style="color: var(--border-medium);">|</span>
+        <span class="tnum" style="color: var(--text-muted);">WAT (Lagos Timezone)</span>
+      </div>
+      <div class="toolbar-actions">
+        <button class="btn-executive" id="btnToggleTheme" onclick="toggleTheme()" title="Switch between Light Boardroom & Executive Dark Mode">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          <span id="themeBtnText">Dark Mode</span>
+        </button>
+        <button class="btn-executive" onclick="copyExecutiveSummary()" title="Copy high-level C-Suite bullet points to clipboard">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy Summary
+        </button>
+        <button class="btn-executive primary" onclick="window.print()" title="Print or save as high-resolution executive A4 PDF">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+          Print / Export PDF
+        </button>
+      </div>
+    </header>
+
+    <!-- 1. Header Bar -->
+    <section class="header-card" id="headerBar">
+      <div class="company-branding">
+        <div class="brand-logo-crest" title="Na'iya Technology Limited Crest">
+          NT
+        </div>
+        <div class="brand-titles">
+          <div class="brand-name-row">
+            <h1 class="company-title">NA'IYA TECHNOLOGY LIMITED</h1>
+            <span class="report-divider">/</span>
+            <span class="report-title">Executive Performance &amp; Operations Report</span>
+          </div>
+          <div class="report-sub-row">
+            <span class="confidential-tag">CONFIDENTIAL CEO BRIEFING</span>
+            <span>•</span>
+            <span>Operations, IT Service Desk &amp; Autonomous Telemetry</span>
+            <span>•</span>
+            <span class="tnum">Report ID: NTL-OPS-2026-W41</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="metadata-cluster">
+        <div class="badge-row">
+          <div class="period-badge" title="Reporting Period">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <span class="tnum">Period: Sun, Oct 4 – Sat, Oct 10, 2026</span>
+          </div>
+          <div class="system-health-badge" title="Real-time Platform Health Verification">
+            <span class="pulse-dot"></span>
+            <span>System Health: OPTIMAL &amp; HEALTHY</span>
+          </div>
+        </div>
+        <div class="period-meta">
+          <span class="tnum">Timezone: West Africa Time (UTC+1)</span>
+          <span>•</span>
+          <span>Executive Distribution</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Top Row — Executive KPI Stat Cards (4 Cards) -->
+    <section class="kpi-grid" id="kpiRow">
+      
+      <!-- Card 1: Tickets Received & Resolved -->
+      <article class="kpi-card" id="kpiCard1">
+        <div class="kpi-card-header">
+          <span class="kpi-label">Support Inflow &amp; Velocity</span>
+          <span class="kpi-tag blue">Direct Queue</span>
+        </div>
+        <div class="kpi-main-stat">
+          <span class="kpi-number tnum">72</span>
+          <span class="kpi-unit">Tickets Received</span>
+        </div>
+        <div class="kpi-secondary">
+          <div>
+            <span class="kpi-highlight tnum">31 Resolved</span> 
+            <span class="tnum" style="color: var(--brand-emerald-dark); font-weight: 700;">(43% Resolution Rate)</span>
+          </div>
+          <div>Backlog: <span class="kpi-highlight tnum">41 in progress</span> (queue contained)</div>
+        </div>
+        <div class="kpi-bar-container" title="31 Resolved (43%), 41 In Progress (57%)">
+          <div class="kpi-bar-segment" style="width: 43.1%; background: var(--brand-indigo);"></div>
+          <div class="kpi-bar-segment" style="width: 56.9%; background: var(--border-medium);"></div>
+        </div>
+        <div class="kpi-foot-note">
+          <span>Weekly Ticket Intake</span>
+          <span class="tnum" style="font-weight: 600;">100% Tracked</span>
+        </div>
+      </article>
+
+      <!-- Card 2: Autonomous Deflection -->
+      <article class="kpi-card" id="kpiCard2">
+        <div class="kpi-card-header">
+          <span class="kpi-label">Autonomous Deflection</span>
+          <span class="kpi-tag emerald">Target Exceeded</span>
+        </div>
+        <div class="kpi-main-stat">
+          <span class="kpi-number tnum" style="color: var(--brand-emerald-dark);">227</span>
+          <span class="kpi-unit">Inquiries Deflected</span>
+        </div>
+        <div class="kpi-secondary">
+          <div>
+            <span class="kpi-highlight tnum">~57 Support Hours Saved</span>
+          </div>
+          <div>Capacity Multiplier: <span class="kpi-highlight tnum" style="color: var(--brand-indigo);">+2.5 FTE Equivalent</span></div>
+        </div>
+        <div class="kpi-bar-container" title="227 Automated vs 72 Manual Support (75.9% Autonomous Ratio)">
+          <div class="kpi-bar-segment" style="width: 75.9%; background: var(--brand-emerald);"></div>
+          <div class="kpi-bar-segment" style="width: 24.1%; background: var(--brand-indigo);"></div>
+        </div>
+        <div class="kpi-foot-note">
+          <span>Autonomous vs Staff Intake</span>
+          <span class="tnum" style="font-weight: 600; color: var(--brand-emerald-dark);">75.9% Deflected</span>
+        </div>
+      </article>
+
+      <!-- Card 3: Field Agents Registry -->
+      <article class="kpi-card" id="kpiCard3">
+        <div class="kpi-card-header">
+          <span class="kpi-label">Field Operatives Reach</span>
+          <span class="kpi-tag indigo">Registry Active</span>
+        </div>
+        <div class="kpi-main-stat">
+          <span class="kpi-number tnum">6,740</span>
+          <span class="kpi-unit">Active Field Agents</span>
+        </div>
+        <div class="kpi-secondary">
+          <div>
+            <span class="kpi-highlight tnum" style="color: var(--brand-emerald-dark);">+3 New Enrolled</span> 
+            <span>in Registry this period</span>
+          </div>
+          <div>Verified Identity: <span class="kpi-highlight tnum">100% Agent Sync</span></div>
+        </div>
+        <div class="kpi-bar-container" title="6,740 Active Field Operatives Across State Deployment Hubs">
+          <div class="kpi-bar-segment" style="width: 100%; background: var(--brand-blue);"></div>
+        </div>
+        <div class="kpi-foot-note">
+          <span>Active Registry Base</span>
+          <span class="tnum" style="font-weight: 600;">36 States Covered</span>
+        </div>
+      </article>
+
+      <!-- Card 4: Critical Escalations -->
+      <article class="kpi-card" id="kpiCard4">
+        <div class="kpi-card-header">
+          <span class="kpi-label">Service Level Agreement</span>
+          <span class="kpi-tag emerald">Zero Breach</span>
+        </div>
+        <div class="kpi-main-stat">
+          <span class="kpi-number tnum" style="color: var(--brand-emerald-dark);">0</span>
+          <span class="kpi-unit">Critical Escalations</span>
+        </div>
+        <div class="kpi-secondary">
+          <div>
+            <span class="kpi-highlight tnum" style="color: var(--brand-emerald-dark);">100% SLA Compliance</span>
+          </div>
+          <div>Operational Benchmark: <span class="kpi-highlight">Target &ge; 98.0%</span></div>
+        </div>
+        <div class="kpi-bar-container" title="100% SLA Compliance">
+          <div class="kpi-bar-segment" style="width: 100%; background: var(--brand-emerald);"></div>
+        </div>
+        <div class="kpi-foot-note">
+          <span>Incident Risk Level</span>
+          <span style="font-weight: 700; color: var(--brand-emerald-dark);">NEGLIGIBLE (OPTIMAL)</span>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- 3. Section 2 — Autonomous Tools ROI & Deflection Impact -->
+    <section class="section-card" id="autonomousRoiSection">
+      <div class="section-header-row">
+        <div class="section-heading-group">
+          <span class="section-badge-num">2</span>
+          <div>
+            <h2 class="section-title">Autonomous Tools ROI &amp; Deflection Impact</h2>
+            <p class="section-subtext">Zero-touch inquiry absorption, self-service portals, and automated credential recovery metrics</p>
+          </div>
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <span class="toolbar-chip" style="color: var(--brand-emerald-dark); background: var(--brand-emerald-light);">
+            High Efficiency Multiplier
+          </span>
+        </div>
+      </div>
+
+      <!-- ROI Sleek Summary Strip -->
+      <div class="roi-strip">
+        <div class="roi-strip-item">
+          <span class="roi-strip-label">Total Inquiries Deflected</span>
+          <span class="roi-strip-value tnum" style="color: var(--brand-emerald-dark);">227 Inquiries</span>
+          <span class="roi-strip-sub">75.9% of all inbound demand</span>
+        </div>
+        <div class="roi-strip-item">
+          <span class="roi-strip-label">Support Hours Conserved</span>
+          <span class="roi-strip-value tnum" style="color: var(--brand-indigo);">~56.8 Hours</span>
+          <span class="roi-strip-sub">Calculated @ 15 min / manual ticket</span>
+        </div>
+        <div class="roi-strip-item">
+          <span class="roi-strip-label">Staff Capacity Equivalent</span>
+          <span class="roi-strip-value tnum">+2.5 FTE Support Staff</span>
+          <span class="roi-strip-sub">Headcount scale conserved</span>
+        </div>
+        <div class="roi-strip-item">
+          <span class="roi-strip-label">Autonomous Success Velocity</span>
+          <span class="roi-strip-value tnum">94.6% Weighted Avg</span>
+          <span class="roi-strip-sub">5 autonomous channels deployed</span>
+        </div>
+      </div>
+
+      <!-- Compact Performance Table -->
+      <div class="executive-table-container">
+        <table class="executive-table" id="toolsTable">
+          <thead>
+            <tr>
+              <th style="width: 24%;">Automation Tool &amp; Channel</th>
+              <th style="width: 28%;">Core Function &amp; Architecture</th>
+              <th style="text-align: center; width: 12%;">Inquiries Deflected</th>
+              <th style="text-align: center; width: 10%;">Share %</th>
+              <th style="text-align: center; width: 12%;">Success Rate</th>
+              <th style="text-align: center; width: 14%;">Hours Saved</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Tool 1: VPN Assistant (Top Deflector Highlight) -->
+            <tr class="highlight-top">
+              <td>
+                <div class="table-tool-name">
+                  <span>VPN Assistant</span>
+                  <span class="tool-chip indigo">Top Deflector</span>
+                </div>
+                <div style="font-size: 10px; color: var(--text-muted); margin-top: 1px;">WireGuard / IPsec automated diagnostic</div>
+              </td>
+              <td style="color: var(--text-secondary);">
+                Autonomous WireGuard &amp; APN network reset wizard; reconfigures field agent tunnel configs without IT intervention.
+              </td>
+              <td style="text-align: center; font-weight: 800;" class="tnum">148</td>
+              <td style="text-align: center; color: var(--text-secondary);" class="tnum">65.2%</td>
+              <td style="text-align: center;">
+                <span class="pill-stat emerald tnum">94.2%</span>
+              </td>
+              <td style="text-align: center; font-weight: 700; color: var(--brand-indigo);" class="tnum">~37.0 hrs</td>
+            </tr>
+
+            <!-- Tool 2: Agent Payment Portal (100% Success Benchmark) -->
+            <tr class="highlight-perfect">
+              <td>
+                <div class="table-tool-name">
+                  <span>Agent Payment Portal</span>
+                  <span class="tool-chip emerald">100% Benchmark</span>
+                </div>
+                <div style="font-size: 10px; color: var(--brand-blue); margin-top: 1px;">pay.naiyatechnology.org</div>
+              </td>
+              <td style="color: var(--text-secondary);">
+                Self-service volume audit, monthly statement check, and filtered CSV disbursement export via IMEI &amp; NIN.
+              </td>
+              <td style="text-align: center; font-weight: 800;" class="tnum">38</td>
+              <td style="text-align: center; color: var(--text-secondary);" class="tnum">16.7%</td>
+              <td style="text-align: center;">
+                <span class="pill-stat emerald tnum">100.0%</span>
+              </td>
+              <td style="text-align: center; font-weight: 700; color: var(--brand-indigo);" class="tnum">~9.5 hrs</td>
+            </tr>
+
+            <!-- Tool 3: NIMC Login Assistant -->
+            <tr>
+              <td>
+                <div class="table-tool-name">
+                  <span>NIMC Login Assistant</span>
+                  <span class="tool-chip cyan">Self-Service</span>
+                </div>
+                <div style="font-size: 10px; color: var(--text-muted); margin-top: 1px;">Enrollment portal validation</div>
+              </td>
+              <td style="color: var(--text-secondary);">
+                Direct enrollment portal link dispatch and operator credential lookup guidance; reduces repetitive login tickets.
+              </td>
+              <td style="text-align: center; font-weight: 800;" class="tnum">22</td>
+              <td style="text-align: center; color: var(--text-secondary);" class="tnum">9.7%</td>
+              <td style="text-align: center;">
+                <span class="pill-stat emerald tnum">89.4%</span>
+              </td>
+              <td style="text-align: center; font-weight: 700; color: var(--brand-indigo);" class="tnum">~5.5 hrs</td>
+            </tr>
+
+            <!-- Tool 4: Webmail Reset Assistant -->
+            <tr>
+              <td>
+                <div class="table-tool-name">
+                  <span>Webmail Reset Assistant</span>
+                  <span class="tool-chip slate">API Gateway</span>
+                </div>
+                <div style="font-size: 10px; color: var(--text-muted); margin-top: 1px;">cPanel automated mailbox resets</div>
+              </td>
+              <td style="color: var(--text-secondary);">
+                Direct cPanel API email password re-provisioning with corporate domain validation (@naiyatechnology.org).
+              </td>
+              <td style="text-align: center; font-weight: 800;" class="tnum">11</td>
+              <td style="text-align: center; color: var(--text-secondary);" class="tnum">4.8%</td>
+              <td style="text-align: center;">
+                <span class="pill-stat emerald tnum">98.1%</span>
+              </td>
+              <td style="text-align: center; font-weight: 700; color: var(--brand-indigo);" class="tnum">~2.8 hrs</td>
+            </tr>
+
+            <!-- Tool 5: AI Diagnostic & Smart Triage -->
+            <tr>
+              <td>
+                <div class="table-tool-name">
+                  <span>AI Diagnostic &amp; Smart Triage</span>
+                  <span class="tool-chip slate">Pre-Ticket Intercept</span>
+                </div>
+                <div style="font-size: 10px; color: var(--text-muted); margin-top: 1px;">Smart article matching engine</div>
+              </td>
+              <td style="color: var(--text-secondary);">
+                Instant knowledge base solution match and interactive symptom diagnosis; resolves agent issues before queue submission.
+              </td>
+              <td style="text-align: center; font-weight: 800;" class="tnum">8</td>
+              <td style="text-align: center; color: var(--text-secondary);" class="tnum">3.5%</td>
+              <td style="text-align: center;">
+                <span class="pill-stat emerald tnum">88.0%</span>
+              </td>
+              <td style="text-align: center; font-weight: 700; color: var(--brand-indigo);" class="tnum">~2.0 hrs</td>
+            </tr>
+
+            <!-- Total Row -->
+            <tr class="table-total-row">
+              <td colspan="2">
+                <span style="letter-spacing: 0.04em;">TOTAL AUTONOMOUS &amp; SELF-SERVICE ECOSYSTEM</span>
+              </td>
+              <td style="text-align: center; font-size: 13px;" class="tnum">227</td>
+              <td style="text-align: center;" class="tnum">100.0%</td>
+              <td style="text-align: center;">
+                <span class="pill-stat emerald tnum" style="font-size: 12px;">94.6% Avg</span>
+              </td>
+              <td style="text-align: center; font-size: 13px; color: var(--brand-emerald-dark);" class="tnum">~56.8 Hours Conserved</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 4. Section 3 — Two-Column Operational Split -->
+    <div class="two-col-grid" id="operationsSplitSection">
+      
+      <!-- Left Column: Workload Demand by Category -->
+      <section class="section-card" id="workloadByCategorySection">
+        <div class="section-header-row">
+          <div class="section-heading-group">
+            <span class="section-badge-num">3A</span>
+            <div>
+              <h2 class="section-title">Workload Demand by Category</h2>
+              <p class="section-subtext">Queue share distribution across 72 total tickets filed</p>
+            </div>
+          </div>
+          <span class="pill-stat indigo tnum">72 Inflow Total</span>
+        </div>
+
+        <div class="category-list">
+          
+          <!-- Category 1: VPN Related (31.9%) -->
+          <div class="category-item">
+            <div class="cat-meta-row">
+              <span class="cat-name">
+                <span class="cat-dot" style="background: #4F46E5;"></span>
+                <span>VPN Related</span>
+              </span>
+              <div class="cat-stats">
+                <span class="cat-count tnum">23 tickets (10 res / 13 in-prog)</span>
+                <span class="cat-pct tnum" style="color: #4F46E5;">31.9%</span>
+              </div>
+            </div>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" style="width: 31.9%; background: #4F46E5;"></div>
+            </div>
+          </div>
+
+          <!-- Category 2: NIMC Login (26.4%) -->
+          <div class="category-item">
+            <div class="cat-meta-row">
+              <span class="cat-name">
+                <span class="cat-dot" style="background: #0284C7;"></span>
+                <span>NIMC Login Details</span>
+              </span>
+              <div class="cat-stats">
+                <span class="cat-count tnum">19 tickets (8 res / 11 in-prog)</span>
+                <span class="cat-pct tnum" style="color: #0284C7;">26.4%</span>
+              </div>
+            </div>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" style="width: 26.4%; background: #0284C7;"></div>
+            </div>
+          </div>
+
+          <!-- Category 3: Webmail (20.8%) -->
+          <div class="category-item">
+            <div class="cat-meta-row">
+              <span class="cat-name">
+                <span class="cat-dot" style="background: #0D9488;"></span>
+                <span>Webmail Access</span>
+              </span>
+              <div class="cat-stats">
+                <span class="cat-count tnum">15 tickets (7 res / 8 in-prog)</span>
+                <span class="cat-pct tnum" style="color: #0D9488;">20.8%</span>
+              </div>
+            </div>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" style="width: 20.8%; background: #0D9488;"></div>
+            </div>
+          </div>
+
+          <!-- Category 4: Others (16.7%) -->
+          <div class="category-item">
+            <div class="cat-meta-row">
+              <span class="cat-name">
+                <span class="cat-dot" style="background: #64748B;"></span>
+                <span>Others (General / Admin)</span>
+              </span>
+              <div class="cat-stats">
+                <span class="cat-count tnum">12 tickets (5 res / 7 in-prog)</span>
+                <span class="cat-pct tnum" style="color: #64748B;">16.7%</span>
+              </div>
+            </div>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" style="width: 16.7%; background: #64748B;"></div>
+            </div>
+          </div>
+
+          <!-- Category 5: Device & Activation (4.2%) -->
+          <div class="category-item">
+            <div class="cat-meta-row">
+              <span class="cat-name">
+                <span class="cat-dot" style="background: #D97706;"></span>
+                <span>Device &amp; Activation</span>
+              </span>
+              <div class="cat-stats">
+                <span class="cat-count tnum">3 tickets (1 res / 2 in-prog)</span>
+                <span class="cat-pct tnum" style="color: #D97706;">4.2%</span>
+              </div>
+            </div>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" style="width: 4.2%; background: #D97706;"></div>
+            </div>
+          </div>
+
+        </div>
+
+        <div style="margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center; font-size: 11px;">
+          <span style="color: var(--text-muted);">Queue Priority Distribution:</span>
+          <span class="tnum" style="font-weight: 700; color: var(--text-primary);">
+            31 Resolved (43.1%) | 41 In-Progress (56.9%)
+          </span>
+        </div>
+      </section>
+
+      <!-- Right Column: Support Roster Throughput -->
+      <section class="section-card" id="supportRosterSection">
+        <div class="section-header-row">
+          <div class="section-heading-group">
+            <span class="section-badge-num">3B</span>
+            <div>
+              <h2 class="section-title">Support Roster Throughput</h2>
+              <p class="section-subtext">Verified staff productivity, ticket completions, and active queue burden</p>
+            </div>
+          </div>
+          <span class="toolbar-chip" style="color: var(--brand-emerald-dark); background: var(--brand-emerald-light);">
+            High Velocity
+          </span>
+        </div>
+
+        <div class="executive-table-container">
+          <table class="executive-table" id="rosterTable">
+            <thead>
+              <tr>
+                <th style="width: 32%;">Staff Member</th>
+                <th style="text-align: center; width: 14%;">Work Score</th>
+                <th style="text-align: center; width: 13%;">Resolved</th>
+                <th style="text-align: center; width: 13%;">Messages</th>
+                <th style="text-align: center; width: 12%;">Queue</th>
+                <th style="text-align: center; width: 16%;">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Staff 1: Abubakar Ibrahim Olose -->
+              <tr>
+                <td>
+                  <div class="staff-name-cell">Abubakar Ibrahim Olose</div>
+                  <div class="staff-sub-role">Support Team Lead</div>
+                </td>
+                <td style="text-align: center; font-weight: 800; color: var(--brand-indigo);" class="tnum">58</td>
+                <td style="text-align: center; font-weight: 700; color: var(--brand-emerald-dark);" class="tnum">14</td>
+                <td style="text-align: center; color: var(--text-secondary);" class="tnum">44</td>
+                <td style="text-align: center; font-weight: 600;" class="tnum">12</td>
+                <td style="text-align: center;">
+                  <span class="status-pill green">Active</span>
+                </td>
+              </tr>
+
+              <!-- Staff 2: Yahaya Olajide Hammed -->
+              <tr>
+                <td>
+                  <div class="staff-name-cell">Yahaya Olajide Hammed</div>
+                  <div class="staff-sub-role">Senior Operations Officer</div>
+                </td>
+                <td style="text-align: center; font-weight: 800; color: var(--brand-indigo);" class="tnum">41</td>
+                <td style="text-align: center; font-weight: 700; color: var(--brand-emerald-dark);" class="tnum">9</td>
+                <td style="text-align: center; color: var(--text-secondary);" class="tnum">32</td>
+                <td style="text-align: center; font-weight: 600;" class="tnum">15</td>
+                <td style="text-align: center;">
+                  <span class="status-pill green">Active</span>
+                </td>
+              </tr>
+
+              <!-- Staff 3: IT Administrator -->
+              <tr>
+                <td>
+                  <div class="staff-name-cell">IT Administrator</div>
+                  <div class="staff-sub-role">Infrastructure &amp; cPanel Admin</div>
+                </td>
+                <td style="text-align: center; font-weight: 800; color: var(--brand-indigo);" class="tnum">24</td>
+                <td style="text-align: center; font-weight: 700; color: var(--brand-emerald-dark);" class="tnum">5</td>
+                <td style="text-align: center; color: var(--text-secondary);" class="tnum">19</td>
+                <td style="text-align: center; font-weight: 600;" class="tnum">8</td>
+                <td style="text-align: center;">
+                  <span class="status-pill green">Active</span>
+                </td>
+              </tr>
+
+              <!-- Staff 4: Support Desk -->
+              <tr>
+                <td>
+                  <div class="staff-name-cell">Support Officer (Desk)</div>
+                  <div class="staff-sub-role">Field Triage &amp; Dispatch</div>
+                </td>
+                <td style="text-align: center; font-weight: 800; color: var(--brand-indigo);" class="tnum">16</td>
+                <td style="text-align: center; font-weight: 700; color: var(--brand-emerald-dark);" class="tnum">3</td>
+                <td style="text-align: center; color: var(--text-secondary);" class="tnum">13</td>
+                <td style="text-align: center; font-weight: 600;" class="tnum">6</td>
+                <td style="text-align: center;">
+                  <span class="status-pill green">Active</span>
+                </td>
+              </tr>
+
+              <!-- Summary Roster Total -->
+              <tr class="table-total-row">
+                <td>
+                  <span style="letter-spacing: 0.04em;">TOTAL WORK DONE</span>
+                </td>
+                <td style="text-align: center; font-size: 13px; color: var(--brand-indigo);" class="tnum">139</td>
+                <td style="text-align: center; font-size: 13px; color: var(--brand-emerald-dark);" class="tnum">31</td>
+                <td style="text-align: center;" class="tnum">108</td>
+                <td style="text-align: center; font-weight: 800;" class="tnum">41</td>
+                <td style="text-align: center;">
+                  <span class="status-pill green">Optimal</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- 5. Bottom Section — CEO Strategic Takeaways & Action Items -->
+    <section class="section-card" id="strategicTakeawaysSection">
+      <div class="section-header-row">
+        <div class="section-heading-group">
+          <span class="section-badge-num">4</span>
+          <div>
+            <h2 class="section-title">CEO Strategic Takeaways &amp; Action Items</h2>
+            <p class="section-subtext">Operational assessment, performance verdicts, and resource allocation recommendations</p>
+          </div>
+        </div>
+        <span class="toolbar-chip">Executive Summary Verdict</span>
+      </div>
+
+      <div class="takeaways-grid">
+        
+        <!-- Callout 1: Team Productivity (ON TRACK) -->
+        <article class="takeaway-card">
+          <div class="takeaway-header">
+            <span class="takeaway-title">1. Team Productivity</span>
+            <span class="strategic-tag on-track">ON TRACK</span>
+          </div>
+          <p class="takeaway-body">
+            Support staff completed <strong>139 verified actions</strong> with a <strong>43% resolution velocity</strong> on incoming tickets. The active queue of 41 remains contained within normal operational SLAs with zero unassigned ticket abandonment.
+          </p>
+          <div class="takeaway-meta">
+            <span>Owner: Support Team Leads</span>
+            <span>•</span>
+            <span class="tnum">Target: &gt;40% Velocity</span>
+          </div>
+        </article>
+
+        <!-- Callout 2: Autonomous ROI (EXCEEDED) -->
+        <article class="takeaway-card">
+          <div class="takeaway-header">
+            <span class="takeaway-title">2. Autonomous ROI</span>
+            <span class="strategic-tag exceeded">EXCEEDED</span>
+          </div>
+          <p class="takeaway-body">
+            Autonomous self-service tools deflected <strong>227 inquiries</strong>, conserving <strong>~57 support hours</strong> (+2.5 FTE equivalent). VPN Assistant led overall deflection (148 resolutions, 94.2% success), safeguarding engineer bandwidth.
+          </p>
+          <div class="takeaway-meta">
+            <span>Owner: Automation Engine</span>
+            <span>•</span>
+            <span class="tnum">Target: &gt;50 hrs Conserved</span>
+          </div>
+        </article>
+
+        <!-- Callout 3: Payment Self-Service (OPTIMAL) -->
+        <article class="takeaway-card">
+          <div class="takeaway-header">
+            <span class="takeaway-title">3. Payment Self-Service</span>
+            <span class="strategic-tag optimal">OPTIMAL</span>
+          </div>
+          <p class="takeaway-body">
+            Deployment of <code>pay.naiyatechnology.org</code> with self-service IMEI/NIN monthly statements and instant CSV audit exports achieved a <strong>100% success rate</strong> across 38 requests, eliminating payment statement inquiry tickets entirely.
+          </p>
+          <div class="takeaway-meta">
+            <span>Owner: Operations &amp; Finance</span>
+            <span>•</span>
+            <span class="tnum">Target: Zero Manual Tickets</span>
+          </div>
+        </article>
+
+        <!-- Callout 4: Network Coverage (EXPANDING) -->
+        <article class="takeaway-card">
+          <div class="takeaway-header">
+            <span class="takeaway-title">4. Network Coverage</span>
+            <span class="strategic-tag expanding">EXPANDING</span>
+          </div>
+          <p class="takeaway-body">
+            Field agent registry reached <strong>6,740 registered agents</strong> (+3 newly enrolled). Infrastructure sustained <strong>100% SLA compliance</strong> with <strong>0 critical escalations</strong> across all state clusters and hardware sync points.
+          </p>
+          <div class="takeaway-meta">
+            <span>Owner: Field Operations</span>
+            <span>•</span>
+            <span class="tnum">Target: 100% Active SLA</span>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Executive Footer -->
+    <footer class="dashboard-footer">
+      <div class="footer-left">
+        <strong>NA'IYA TECHNOLOGY LIMITED</strong>
+        <span>•</span>
+        <span>Executive Support Operations &amp; Telemetry Engine</span>
+        <span>•</span>
+        <span>Confidential Board &amp; CEO Report</span>
+      </div>
+      <div class="footer-right">
+        <span>ISO 27001 &amp; NDPR CERTIFIED</span>
+        <span>•</span>
+        <span>PAGINATED A4 LANDSCAPE</span>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="execToast" role="alert">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+    <span id="toastMessage">Copied to clipboard</span>
+  </div>
+
+  <!-- Client Interaction Logic -->
+  <script>
+    function toggleTheme() {
+      const isDark = document.body.classList.toggle('dark-mode');
+      const btnText = document.getElementById('themeBtnText');
+      btnText.textContent = isDark ? 'Light Mode' : 'Dark Mode';
+      showToast(isDark ? 'Switched to Executive Dark Mode' : 'Switched to Boardroom Light Mode');
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('execToast');
+      const text = document.getElementById('toastMessage');
+      text.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2600);
+    }
+
+    function copyExecutiveSummary() {
+      const summaryText = `NA'IYA TECHNOLOGY LIMITED - EXECUTIVE PERFORMANCE BRIEFING
+Period: Sun, Oct 4 – Sat, Oct 10, 2026 | System Health: OPTIMAL & HEALTHY
+
+KEY PERFORMANCE INDICATORS:
+• Inflow & Resolution: 72 Tickets Received | 31 Resolved (43% Resolution Rate, 41 in progress)
+• Autonomous Tools Deflection: 227 Inquiries Deflected | ~57 Support Hours Saved (+2.5 FTE Equivalent)
+• Field Agent Registry: 6,740 Active Field Agents in Registry (+3 New Enrolled)
+• SLA Performance: 0 Critical Escalations (100% SLA Compliance)
+
+AUTONOMOUS ROI & TOOLS BREAKDOWN:
+• VPN Assistant: 148 deflections (94.2% success) | ~37.0 hrs saved [TOP DEFLECTOR]
+• Agent Payment Portal (pay.naiyatechnology.org): 38 deflections (100.0% success) | ~9.5 hrs saved [PERFECT BENCHMARK]
+• NIMC Login Assistant: 22 deflections (89.4% success) | ~5.5 hrs saved
+• Webmail Reset Assistant: 11 deflections (98.1% success) | ~2.8 hrs saved
+• AI Diagnostic & Smart Triage: 8 deflections (88.0% success) | ~2.0 hrs saved
+
+WORKLOAD DISTRIBUTION:
+• VPN Related: 31.9% (23 tickets)
+• NIMC Login Details: 26.4% (19 tickets)
+• Webmail Access: 20.8% (15 tickets)
+• Others: 16.7% (12 tickets)
+• Device & Activation: 4.2% (3 tickets)
+
+SUPPORT ROSTER THROUGHPUT:
+• Abubakar Ibrahim Olose: 58 Work Score (14 Resolved, 44 Messages, 12 Active Queue)
+• Yahaya Olajide Hammed: 41 Work Score (9 Resolved, 32 Messages, 15 Active Queue)
+• IT Administrator: 24 Work Score (5 Resolved, 19 Messages, 8 Active Queue)
+• Support Desk: 16 Work Score (3 Resolved, 13 Messages, 6 Active Queue)
+• Total Team Work Done: 139 Score | 31 Resolved | 108 Messages
+
+CEO STRATEGIC VERDICTS:
+1. Team Productivity: [ON TRACK] - 139 verified staff actions, 43% turnaround, backlog contained.
+2. Autonomous ROI: [EXCEEDED] - 227 inquiries deflected (+2.5 FTE equivalent), ~57 hours saved.
+3. Payment Self-Service: [OPTIMAL] - pay.naiyatechnology.org 100% success, zero manual statement tickets.
+4. Network Coverage: [EXPANDING] - 6,740 active agents, 100% SLA compliance, 0 critical escalations.`;
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(summaryText).then(() => {
+          showToast('Executive briefing copied to clipboard');
+        }).catch(() => {
+          fallbackCopyText(summaryText);
+        });
+      } else {
+        fallbackCopyText(summaryText);
+      }
+    }
+
+    function fallbackCopyText(text) {
+      const textArea = document.createElement("textarea");
+      textArea.value = text;
+      textArea.style.position = "fixed";
+      textArea.style.top = "0";
+      textArea.style.left = "0";
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      try {
+        document.execCommand('copy');
+        showToast('Executive briefing copied to clipboard');
+      } catch (err) {
+        showToast('Unable to auto-copy');
+      }
+      document.body.removeChild(textArea);
+    }
+  </script>
+</body>
+</html>

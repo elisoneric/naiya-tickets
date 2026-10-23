@@ -1,0 +1,55 @@
+<IfModule mod_headers.c>
+Header always set Access-Control-Allow-Origin "*"
+Header always set Access-Control-Allow-Methods "POST, GET, OPTIONS"
+Header always set Access-Control-Allow-Headers "Content-Type, Authorization, X-Internal-Token, x-internal-token"
+
+# Cache Busting: Never cache HTML entry points so browsers always load fresh bundles
+<FilesMatch "\.(html|htm)$">
+    Header set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
+    Header set Pragma "no-cache"
+    Header set Expires "Wed, 11 Jan 1984 05:00:00 GMT"
+</FilesMatch>
+
+# Static assets with unique hashes can be cached aggressively
+<FilesMatch "\.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2)$">
+    Header set Cache-Control "max-age=31536000, public, immutable"
+</FilesMatch>
+</IfModule>
+
+RewriteEngine On
+RewriteBase /
+
+# Redirect old /uploads/* URLs to /backend/uploads/* (fixes legacy image paths)
+RewriteRule ^uploads/(.*)$ /backend/uploads/$1 [R=301,L]
+
+
+RewriteRule ^complain/?$ support/feedback.html#complaint [NE,R,L,NC]
+RewriteRule ^suggest/?$ support/feedback.html#suggestion [NE,R,L,NC]
+
+
+
+RewriteRule ^feedback/admin/?$ support/admin-feedback.html [L,NC]
+RewriteRule ^(f|feed|feedback)/?$ support/feedback.html [L,NC]
+RewriteRule ^(d)/?$ diff.html [L,NC]
+RewriteRule ^(p)/?$ password.html [L,NC]
+
+
+RewriteCond %{REQUEST_METHOD} OPTIONS
+RewriteRule ^(.*)$ $1 [R=200,L]
+# PHP environment variables
+SetEnv JWT_SECRET naiya_secure_jwt_secret_key_2026_v2
+SetEnv SMTP_PASSWORD XAFIQSSJGMDWCPLX
+SetEnv MAIL_INTERNAL_TOKEN 4e5183cdb9abb915b5e52a782c5f2bf5
+
+php_value upload_max_filesize 256M
+php_value post_max_size 256M
+php_value memory_limit 512M
+php_value max_execution_time 300
+php_value max_input_time 300
+
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+
+RewriteRule ^.*$ index.html [L]
